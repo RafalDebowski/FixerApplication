@@ -9,15 +9,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class NetworkModule {
 
-    companion object{
-         const val BASE_URL = "http://data.fixer.io/api/"
+    companion object {
+        const val BASE_URL = "http://data.fixer.io/api/"
     }
 
     lateinit var retrofit: Retrofit
 
     @Provides
-    fun provideRetrofit() : Retrofit {
-       retrofit = Retrofit.Builder()
+    fun provideRetrofit(): Retrofit {
+        retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

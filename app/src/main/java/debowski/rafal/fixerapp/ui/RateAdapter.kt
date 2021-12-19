@@ -9,11 +9,11 @@ class RateAdapter(
     val onClickItem: (bundleData: String, data: String) -> Unit
 ) : RecyclerView.Adapter<RateAdapter.ViewHolder>() {
 
-    var listItem : List<String> = listOf()
-    set(value){
-        field = value
-        notifyDataSetChanged()
-    }
+    var listItem: List<String> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     var date: String = ""
 
@@ -39,7 +39,7 @@ class RateAdapter(
         fun bind(item: String) {
             binding.rate.text = item
 
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onClickItem(item, date)
             }
         }

@@ -7,7 +7,6 @@ import retrofit2.Response
 
 class RateRepository constructor(private val rateApi: RateApi) {
 
-     fun getLatestRate(): Call<DailyRate> =
+    fun getLatestRate(): Call<DailyRate> =
         rateApi.getLatestRate()
-
 }

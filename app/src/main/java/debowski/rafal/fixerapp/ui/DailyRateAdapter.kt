@@ -7,14 +7,14 @@ import debowski.rafal.fixerapp.databinding.ItemDailyRateBinding
 import debowski.rafal.fixerapp.models.DailyRate
 
 class DailyRateAdapter(
-    private val onClickItem: (bundleData: String, data : String) -> Unit
+    private val onClickItem: (bundleData: String, data: String) -> Unit
 ) : RecyclerView.Adapter<DailyRateAdapter.ViewHolder>() {
 
-    var listItem : List<DailyRate> = listOf()
-    set(value){
-        field = value
-        notifyDataSetChanged()
-    }
+    var listItem: List<DailyRate> = listOf()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     private var adapter = RateAdapter(
         onClickItem

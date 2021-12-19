@@ -11,8 +11,6 @@ class DetailsActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityDetailsBinding
 
-    lateinit var rate: Rate
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,23 +19,14 @@ class DetailsActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        getBundleAndInitData(savedInstanceState)
+        getBundleAndInitData()
 
         initButton()
-
     }
 
-    private fun getBundleAndInitData(bundle: Bundle?) {
-            val rateItem = intent.getStringExtra(MainActivity.RATE_ITEM)
-            val date = intent.getStringExtra(MainActivity.DATE_VALUE)
-
-//            rate = Rate(
-//                date = date.orEmpty(),
-//                rateValue = rateItem.orEmpty()
-//            )
-
-            binding.date.text = date
-            binding.rateItem.text = rateItem
+    private fun getBundleAndInitData() {
+        binding.date.text = intent.getStringExtra(MainActivity.RATE_ITEM)
+        binding.rateItem.text = intent.getStringExtra(MainActivity.DATE_VALUE)
     }
 
     private fun initButton() {

@@ -11,9 +11,9 @@ import javax.inject.Inject
 
 class MainActivity() : AppCompatActivity() {
 
-    companion object{
+    companion object {
         const val RATE_ITEM = "RATE_ITEM"
-        const val DATE_VALUE ="DATE_VALUE"
+        const val DATE_VALUE = "DATE_VALUE"
     }
 
     @Inject
@@ -41,7 +41,7 @@ class MainActivity() : AppCompatActivity() {
 
     }
 
-    private fun observeData(){
+    private fun observeData() {
         viewModel.latestRate.observe(
             this,
             {
@@ -52,7 +52,7 @@ class MainActivity() : AppCompatActivity() {
         )
     }
 
-    private fun onClickItem(bundleData: String, date: String){
+    private fun onClickItem(bundleData: String, date: String) {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(RATE_ITEM, bundleData)
         intent.putExtra(DATE_VALUE, date)

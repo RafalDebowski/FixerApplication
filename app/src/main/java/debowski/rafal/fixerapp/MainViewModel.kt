@@ -11,12 +11,10 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val rateRepository: RateRepository
-): ViewModel() {
+) : ViewModel() {
 
-    lateinit var action: MutableLiveData<Action>
-
-     var latestRate = MutableLiveData<MutableList<DailyRate>>()
-     var localLatestRate : MutableList<DailyRate> = mutableListOf()
+    var latestRate = MutableLiveData<MutableList<DailyRate>>()
+    private var localLatestRate: MutableList<DailyRate> = mutableListOf()
 
     fun getLatestRate() {
         CoroutineScope(Dispatchers.IO).launch {
@@ -36,10 +34,5 @@ class MainViewModel @Inject constructor(
             latestRate.postValue(localLatestRate)
         }
 
-    }
-
-
-    sealed class Action{
-        object LatestRate : Action()
     }
 }
