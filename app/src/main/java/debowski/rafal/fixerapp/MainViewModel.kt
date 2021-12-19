@@ -1,7 +1,5 @@
 package debowski.rafal.fixerapp
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import debowski.rafal.fixerapp.models.DailyRate
@@ -17,11 +15,25 @@ class MainViewModel @Inject constructor(
 
     lateinit var action: MutableLiveData<Action>
 
-     var latestRate = MutableLiveData<DailyRate>()
+     var latestRate = MutableLiveData<MutableList<DailyRate>>()
+     var localLatestRate : MutableList<DailyRate> = mutableListOf()
 
     fun getLatestRate() {
         CoroutineScope(Dispatchers.IO).launch {
-            latestRate.value = rateRepository.getLatestRate()
+            val rates = rateRepository.getLatestRate().execute().body()?.rates.toString()
+            val result = rates.split(",")
+
+            val dailyRate = rateRepository.getLatestRate().execute().body()
+
+            dailyRate.apply {
+                this?.listRates = result
+            }
+
+            dailyRate?.let {
+                localLatestRate.add(dailyRate)
+            }
+
+            latestRate.postValue(localLatestRate)
         }
 
     }

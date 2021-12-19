@@ -3,10 +3,8 @@ package debowski.rafal.fixerapp.di.modules
 import dagger.Module
 import dagger.Provides
 import debowski.rafal.fixerapp.api.RateApi
-import debowski.rafal.fixerapp.models.DailyRate
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class NetworkModule {
@@ -21,7 +19,7 @@ class NetworkModule {
     fun provideRetrofit() : Retrofit {
        retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         return retrofit

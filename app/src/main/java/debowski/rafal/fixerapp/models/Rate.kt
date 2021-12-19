@@ -1,6 +1,6 @@
 package debowski.rafal.fixerapp.models
 
 class Rate(
-    val name : String,
-    val value : String
+    val date: String,
+    val rateValue: String
 )
