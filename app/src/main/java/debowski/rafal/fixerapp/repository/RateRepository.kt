@@ -9,4 +9,7 @@ class RateRepository constructor(private val rateApi: RateApi) {
 
     fun getLatestRate(): Call<DailyRate> =
         rateApi.getLatestRate()
+
+    fun getDailyRateByDate(date: String): Call<DailyRate> =
+        rateApi.getDailyRateByDate(date)
 }

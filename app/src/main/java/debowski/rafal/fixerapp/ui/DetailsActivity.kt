@@ -25,8 +25,8 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun getBundleAndInitData() {
-        binding.date.text = intent.getStringExtra(MainActivity.RATE_ITEM)
-        binding.rateItem.text = intent.getStringExtra(MainActivity.DATE_VALUE)
+        binding.date.text = intent.getStringExtra(MainActivity.DATE_VALUE)
+        binding.rateItem.text = intent.getStringExtra(MainActivity.RATE_ITEM)
     }
 
     private fun initButton() {

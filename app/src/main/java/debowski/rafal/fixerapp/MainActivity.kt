@@ -3,6 +3,7 @@ package debowski.rafal.fixerapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.RecyclerView
 import debowski.rafal.fixerapp.databinding.ActivityMainBinding
 import debowski.rafal.fixerapp.di.DaggerAppComponent
 import debowski.rafal.fixerapp.ui.DailyRateAdapter
@@ -14,6 +15,7 @@ class MainActivity() : AppCompatActivity() {
     companion object {
         const val RATE_ITEM = "RATE_ITEM"
         const val DATE_VALUE = "DATE_VALUE"
+        const val EMPTY_STRING = ""
     }
 
     @Inject
@@ -37,6 +39,7 @@ class MainActivity() : AppCompatActivity() {
         viewModel.getLatestRate()
         observeData()
 
+        setRecyclerViewScrollListener()
         setContentView(binding.root)
 
     }
@@ -50,6 +53,21 @@ class MainActivity() : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun setRecyclerViewScrollListener() {
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                recyclerView.layoutManager?.itemCount
+
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (viewModel.latestRate.value != null){
+                        viewModel.getDailyRateByDate(viewModel.latestRate.value!!.last().date)
+                    }
+                }
+            }
+        })
     }
 
     private fun onClickItem(bundleData: String, date: String) {
